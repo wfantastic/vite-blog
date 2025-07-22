@@ -8,7 +8,9 @@ export default defineConfig({
   titleTemplate: "Blog",
   // 在标签上显示所的 logo
   head: [["link", { rel: "icon", href: "/logo.svg" }]],
-
+  
+  // 网站根路径
+  base: "/vite-blog/",
   // 网站描述，有利于被搜索引擎捕获
   description:
     "zbwer's tech blog: An undergraduate's journey through frontend development, sharing insights, tips, and experiences in web technologies.",
