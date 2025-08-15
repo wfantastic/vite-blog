@@ -14,6 +14,8 @@
 
 [点击阅读使用指南](https://example.zbwer.work/)
 
+
+```js
 .
 ├─ docs
 │  ├─ .vitepress
@@ -31,3 +33,5 @@
 ├─ tsconfig.json
 ├─ tailwind.config.js
 └─ package.json
+
+```
