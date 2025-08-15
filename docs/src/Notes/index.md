@@ -15,6 +15,11 @@ types:
     desc: "interview experiences"
     link: "/Notes/Interviews/"
     icon: "🏃"
+  - name: "学习笔记"
+    desc: "learning notes"
+    link: "/Notes/Learning/"
+    icon: "📖"
+
 # flow: true
 ---
 
