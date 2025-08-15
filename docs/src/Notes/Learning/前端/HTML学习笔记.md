@@ -67,3 +67,5 @@ i与em的区别：
 ```html
 <img src="small.jpg " srcset="big.jpg 1440w, middle.jpg 800w, small.jpg 1x" />
 ```
+
+<font style="color:rgb(25, 27, 31);">上面的例子表示浏览器宽度达到 800px 则加载 middle.jpg ，达到 1400px 则加载 big.jpg。注意：像素密度描述只对固定宽度图片有效。</font>
