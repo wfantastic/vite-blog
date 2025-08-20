@@ -1,3 +1,4 @@
+// 配置网站的标题和描述，方便 SEO 优化
 import { defineConfig } from "vitepress";
 import { fileURLToPath, URL } from "node:url";
 import { getSidebar } from "./utils/getSidebar";
@@ -11,7 +12,7 @@ export default defineConfig({
 
   // 网站描述，有利于被搜索引擎捕获
   description:
-    "zbwer's tech blog: An undergraduate's journey through frontend development, sharing insights, tips, and experiences in web technologies.",
+    "Wfantastic's tech blog: An undergraduate's journey through frontend development, sharing insights, tips, and experiences in web technologies.",
 
   // md 文件根目录
   // 【谨慎修改】：一旦修改将引起较多变动
