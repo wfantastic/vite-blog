@@ -54,10 +54,12 @@ npm run docs:dev
 【强烈建议】：请在 `/docs/src/Notes` 目录下编写你的 markdown 文件或是创建子目录。
 :::
 
-新增/删除/修改页面后，命令行切换到 vite-blog目录下，执行 
+新增/删除/修改页面后，命令行切换到 vite-blog目录下，执行
+
 ```bash
 sh deploy.sh
 ```
+
 就会开始构建，然后提交到远程仓库，注意这里提交到了 gh-pages 分支，我们查看下对应仓库分支的代码。
 参考：https://github.com/vuepress/vuepress.github.io
 

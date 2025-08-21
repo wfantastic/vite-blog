@@ -357,3 +357,141 @@ content有以下值：
 | no-store                             | 所有内容都不会被缓存到缓存或 Internet 临时文件中                                                                               |
 | must-revalidation/proxy-revalidation | 如果缓存的内容失效，请求必须发送到服务器/代理以进行重新验证                                                                              |
 | max-age=xxx (xxx is numeric)         | 缓存的内容将在 xxx 秒后失效, 这个选项只在HTTP 1.1可用, 并如果和Last-Modified一起使用时, 优先级较高                                           |
+
+### 响应式图片处理优化Picture标签
+
+它允许你放置多个 source 标签，以指定不同的图像文件名，进而根据不同的条件进行加载。
+
+- 媒体特性结果如：视口的当前高度(viewport height)，宽度(width)，方向(orientation)。
+- 像素密度：
+
+![响应式](../img/xiangyingshi.png "响应式")
+
+```html
+<picture>
+    <source srcset="smaller_landscape.jpg" media="(max-width: 40em) and (orientation: landscape)">
+    <source srcset="smaller_portrait.jpg" media="(max-width: 40em) and (orientation: portrait)">
+    <source srcset="default_landscape.jpg" media="(min-width: 40em) and (orientation: landscape)">
+    <source srcset="default_portrait.jpg" media="(min-width: 40em) and (orientation: portrait)">
+    <img srcset="default_landscape.jpg" alt="My default image">
+</picture>
+```
+
+上面的代码实现了可以在一个小的景观设备上加载小的，景观裁剪图像的版本。在大的景观设备上加载大的相同的图像版本。
+
+### 在 script 标签上使用 defer 和 async
+
+`<script>`标签用于嵌入或引用JavaScript代码，而defer和async属性则用于改变脚本的加载和执行行为。
+defer属性告诉浏览器在解析完整个页面后再执行脚本。
+async属性允许脚本异步加载，这意味着浏览器可以继续解析HTML页面，同时并行下载脚本。
+
+```html
+<script type="text/javascript" defer src="example1.js"></script>
+<script type="text/javascript" async src="example2.js"></script>
+```
+
+### 文档声明的作用
+
+DOCTYPE是html5标准⽹⻚声明，且必须声明在HTML⽂档的第⼀⾏。来告知浏览器的解析器⽤什么⽂档标准解析这个 ⽂档，不同的渲染模式会影响到浏览器对于 CSS 代码甚⾄ JavaScript 脚本的解析。
+⽂档解析类型有：
+BackCompat：怪异模式，浏览器使⽤⾃⼰的怪异模式解析渲染⻚⾯。（如果没有声明DOCTYPE，默认就是这个模式）
+CSS1Compat：标准模式，浏览器使⽤W3C的标准解析渲染⻚⾯
+
+### SVG和Canvas的区别
+
+- svg是矢量图，canvas是位图，svg不依赖分辨率，canvas依赖分辨率，svg放大缩小不会失真，canvas会失真。
+- svg使用XML来描述图形，canvas使用像素来绘制图形，svg可以制作复杂的图形，canvas更适合制作简单的2D图形。
+- svg支持分层和事件，canvas不支持，svg中的文字可保留，可编辑和可搜索，canvas的文本渲染能力弱。
+- svg节点过多时渲染慢，canvas性能更好，但写起来更复杂，svg适合大型渲染区域的应用，canvas适合图形密集型游戏。
+
+### 谈谈WebWorker
+
+[聊一下对 WebWorker 的理解](http://juejin.cn/post/7350181789531619379)。
+WebWorker是一种在 Web 应用中实现`多线程运行`的技术，可以将耗费 CPU 的任务交给`后台线程处理`，`避免阻塞主线程`，从而提高 Web 应用的响应性能和用户体验。 总之，WebWorker的引入解决了 Web 应用长期以来在`单个线程`中运行所带来的诸多问题，有效提升了Web应用的运行性能和用户体验。
+
+### 浏览器内核
+
+浏览器内核是浏览器的核心组件，主要负责解析和渲染网页内容。常见的浏览器内核包括：
+
+- Trident：IE浏览器的内核。
+- Blink：Chrome浏览器的内核，之前是Webkit内核。
+- Gecko：Firefox浏览器的内核。
+- Webkit：Safari浏览器的内核。
+不同的浏览器内核在网页的语法解释和渲染方式上可能存在差异，因此开发者需要在不同内核的浏览器中测试网页的显示效果，以确保网页的兼容性和用户体验。
+
+### 前端如何做好SEO
+
+[前端进阶：SEO 全方位解决方案](https://juejin.cn/post/7241813423460581435)。
+
+1. TDK优化
+2. 网站质量
+3. SEO手段（10种手段）
+一、TDK是Title(页面标题)、Meta Description（页面描述）和Meta Keywords（页面关键词）的缩写，对网站的这三个信息的提炼是网站SEO的重要环节。
+但是由于一些原因，各大主流搜索引擎基本都已经大大降低甚至移除了 `<keywords>` 对排名的影响。
+title标签相当于网站的名片，他会直接显示在搜索结果中。一个好的标题势必可以为网站带来流量，从而提升网站排名。注意：网站标题避免冗长。
+
+```html
+例如：<title>掘金</title>
+```
+
+META标签是网页head区的辅助性标签，它的作用是经过配置一些参数用以描述页面属性。目前几乎所有搜索引擎都使用网上机器人自动查找meta值来给网页分类。
+meta标签的属性有两种：name和http-equiv。
+"name"属性有以下配置项：
+
+- Keywords(关键词，现在不再重要了)：逗号分隔的关键词列表（告诉搜索引擎页面是与什么相关的）；
+- description(网站内容描述，很重要)：页面描述。搜索引擎会把这个描述显示在搜索结果中；
+- format-detection：格式检测，比如禁止识别电话，邮箱等；
+- author：作者的名字；
+- Robots：用来告诉搜索机器人哪些页面需要索引，哪些页面不需要索引；
+- theme-color：网站主题色；
+
+```html
+<meta name="keywords" content="掘金,稀土,Vue.js,前端面试题,Kotlin,ReactNative,Python">
+
+<meta name="description" content="掘金是面向全球中文开发者的技术内容分享与交流平台。我们通过技术文章、沸点、课程、直播等产品和服务，打造一个激发开发者创作灵感，激励开发者沉淀分享，陪伴开发者成长的综合类技术社区。">
+
+<meta name="format-detection" content="telephone=no">
+
+<meta name="author" content="cece">
+
+<Meta name="Robots" Content="Nofollow">
+/** 
+all：文件将被检索，且页面上的链接可以被查询；  
+none：文件将不被检索，且页面上的链接不可以被查询；(和 "noindex, no follow" 起相同作用)  
+index：文件将被检索；（让robot/spider登录）  
+follow：页面上的链接可以被查询；  
+noindex：文件将不被检索，但页面上的链接可以被查询；(不让robot/spider登录)  
+nofollow：文件将不被检索，页面上的链接可以被查询。(不让robot/spider顺着此页的连接往下探找)
+*/
+
+<meta name="theme-color" content="#4285f4" />
+```
+
+"http- equiv"属性有以下配置项：
+http-equiv顾名思义，相当于http的文件头作用，它可以向浏览器传回一些有用的信息，以帮助正确和精确地显示网页内容。
+
+```html
+<meta http-equiv="参数"content="参数变量值">；
+```
+
+- refresh(期限)：定义文档自动刷新的时间间隔（下面content中的2是指停留2秒钟后自动刷新到URL网址）。这个属性值慎重使用，因为它会使得页面不受用户控制；
+- set-cookie：如果网页过期，那么存盘的cookie将被删除；
+
+```html
+<meta http-equiv="refresh" content="2;URL=http://www.baidu.com">
+
+<meta http-equiv="Set-Cookie"content="cookie value=xxx;expires=Friday,12-Jan-200118:18:18GMT；path=/">
+```
+
+二、网站质量：
+网站性能是会影响到网站的SEO排名的，原因可想而知：
+
+- 网站卡顿势必会大大降低网站的用户留存率；
+- 如果网站加载缓慢，搜索引擎就会认为该网站对用户不友好，从而将其排名下降；
+- 影响搜索引擎蜘蛛的爬取频率；
+HTML语义化：语义化是指内容的结构化（内容语义化），选择合适的标签（代码语义化）。
+杜绝通篇div，HTML语义化不仅便于开发者阅读，还有利于浏览器爬虫的解析，对seo优化很有帮助。
+所以我们在开发时要遵循语义化的开发规范，根据页面内容，选择合适的标签，优化代码，使得网页结构更加清晰。
+- SEO的禁忌之一就是用JS输出重要的内容。爬虫不会读取JS格式的内容，所以重要的内容必须是HTML格式，这也就是为什么现在流行的spa框架都不利于seo的原因之一；
+- 尽量不使用iFrame。因为搜索引擎不会抓取iframe内的内容，所以重要内容绝对不能放在iframe中；
+- 如果需要截取文字，尽量用css实现，保证文字可以完整呈现给搜索引擎。
