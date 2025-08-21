@@ -252,3 +252,108 @@ if (top != self) {
 }
 //这段代码会检测页面是否被嵌套，如果是，则将页面重定向到自身。
 ```
+
+### data-开头的元素属性是什么
+
+`data-*`属性是HTML5新引入的自定义数据属性，
+
+- 存储与元素相关的自定义数据。
+- 方便JavaScript读取和操作。通过元素的 dataset 属性可以方便地访问 data-* 属性值，并且会自动进行驼峰式命名转换。 例如，data-user-name 可以通过 element.dataset.userName 获取值。
+- 主要用于数据存储，提高代码的可读性和可维护性。
+
+### HTML5 对比 HTML4 有哪些不同
+
+语法和声明:在HTML5中，DOCTYPE声明变得非常简洁.
+新增和废除的标签:HTML5引入了许多新的标签，使得网页开发更加简洁和语义化。例如：  
+
+- 结构标签：`<section>、<article>、<aside>、<header>、<footer>、<nav>、<figure>`等。  
+- 多媒体标签：`<video>、<audio>、<canvas>`等。
+- 其他标签：`<embed>、<mark>、<progress>`等
+表单控件:新增了许多input类型，如email、url、number、range、date、month、week、datetime、datetime-local、search、color、tel等。这些新类型使得表单的设计更加灵活和强大
+API和功能:HTML5增加了许多新的API和功能，如Canvas绘图、SVG绘图、地理定位、拖放API、Web Worker、Web Storage、WebSocket等。这些新功能使得网页开发更加强大和灵活。
+
+### meta标签有哪些常用用法
+
+**元数据(metadata)元素** 的概念，用来构建HTML文档的基本结构，以及就如何处理文档向浏览器提供信息和指示，它们本身不是文档内容，但提供了关于后面文档内容的信息。
+如title、base、meta都是元数据元素。
+
+| **元素** | **meta** |
+| --- | --- |
+| 父元素| head |
+| 属性 | http-equiv、name、content、charset |
+| HTML5中的变化 | 1. charset为HTML5中新增的，用来声明字符编码;  2.http-equiv属性在HTML4中有很多值，在HTML5中只有refresh、default-style、content-type可用|
+
+`<meta>`元素出去charset属性外，都是http-equiv属性或name属性结合content来使用
+
+```html
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>demo</title>
+    <meta name="keywords" content="电商,物流">
+    <meta name="author" content="张三">
+    <meta name="description" content="网站描述...">
+  </head>
+  <body>
+    <div>welcome</div>
+  </body>
+</html>
+```
+
+| 元数据名称(name的值)    | 说明                                      |
+|------------------|-----------------------------------------|
+| application name | 当前页所属Web应用系统的名称                         |
+| keywords         | 描述网站内容的关键词,以逗号隔开，用于SEO搜索                |
+| description      | 当前页的说明                                  |
+| author           | 当前页的作者名                                 |
+| copyright        | 版权信息                                    |
+| renderer         | renderer是为双核浏览器准备的，用于指定双核浏览器默认以何种方式渲染页面 |
+| viewreport       | 它提供有关视口初始大小的提示，仅供移动设备使用                 |
+
+模拟http标头字段:  
+http-equiv属性与content属性结合使用, http-equiv属性为指定所要模拟的标头字段的名称，content属性用来提供值。
+
+```html
+<meta http-equiv="参数" content="具体的描述">
+```
+
+content-Type 声明网页字符编码:
+
+```html
+<meta http-equiv="content-Type" content="text/html charset=UTF-8">
+```
+
+refresh 指定一个时间间隔(以秒为单位),在此时间过去之后从服务器重新载入当前页面,也可以另外指定一个页面.
+
+```html
+<meta http-equiv="refresh" content="2;URL=http://www.baidu.com">//2秒后在当前页跳转到百度
+```
+
+X-UA-Compatible 浏览器采取何种版本渲染当前页面
+
+```html
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> //指定IE和Chrome使用最新版本渲染当前页面
+```
+
+expires 用于设定网页的到期时间，过期后网页必须到服务器上重新传输
+
+```html
+<meta http-equiv="expires" content="Sunday 22 July 2016 16:30 GMT">
+```
+
+catch-control 用于指定所有缓存机制在整个请求/响应链中必须服从的指令
+
+```html
+<meta http-equiv="cache-control" content="no-cache">//
+```
+
+content有以下值：
+
+| content的值                            | 说明                                                                                                          |
+|--------------------------------------|-------------------------------------------------------------------------------------------------------------|
+| public                               | 所有内容都将被缓存(客户端和代理服务器都可缓存)                                                                                    |
+| private                              | 内容只缓存到私有缓存中(仅客户端可以缓存，代理服务器不可缓存)                                                                             |
+| no-cache                             | 必须先与服务器确认返回的响应是否被更改，然后才能使用该响应来满足后续对同一个网址的请求。因此，如果存在合适的验证令牌 (ETag)，no-cache 会发起往返通信来验证缓存的响应，如果资源未被更改，可以避免下载。 |
+| no-store                             | 所有内容都不会被缓存到缓存或 Internet 临时文件中                                                                               |
+| must-revalidation/proxy-revalidation | 如果缓存的内容失效，请求必须发送到服务器/代理以进行重新验证                                                                              |
+| max-age=xxx (xxx is numeric)         | 缓存的内容将在 xxx 秒后失效, 这个选项只在HTTP 1.1可用, 并如果和Last-Modified一起使用时, 优先级较高                                           |
