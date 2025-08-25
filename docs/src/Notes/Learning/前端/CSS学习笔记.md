@@ -1,5 +1,5 @@
 ---
-title: "CSS学习笔记"
+title: "CSS"
 outline: deep
 desc: "CSS学习笔记"
 tags: "前端"
