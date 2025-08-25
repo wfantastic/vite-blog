@@ -17,3 +17,5 @@ git commit -m 'deploy'
 git push -f https://github.com/wfantastic/wfantastic.github.io.git main:gh-pages
 
 cd -
+
+# 如果没成功试试nvm use 18
